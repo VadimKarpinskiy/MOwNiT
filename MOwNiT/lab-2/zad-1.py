@@ -29,6 +29,24 @@ def gauss_jordan(X,RES):
                 RES[j] -= RES[i]*coeff
     return RES
 
+def check():
+    a,b = matrix_generator(5)
+    print_matrix(a)
+    print("Kolumna wyrazów wolnych: ")
+    print(b)
+    result = gauss_jordan(a,b)
+    truth = np.linalg.solve(a,b)
+    for i in range(5):
+        if result[i] != truth[i]:
+            return False
+    return True
+
+def print_matrix(m):
+    print("Macierz współczynników: ")
+    for i in range(len(m)):
+        for j in range(len(m)):
+            print(m[i][j], end=" ")
+        print()
 
 def comparison():
     stat = []
@@ -51,6 +69,7 @@ def comparison():
         print("Czas działania własnej funkcji (w sekundach): ", stat[i][1], end="  ")
         print("Czas działania funkcji bibliotecznej (w sekundach): ", stat[i][0])
 
+print(check())
 comparison()
     
 
